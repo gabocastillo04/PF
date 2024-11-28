@@ -129,6 +129,7 @@ sockets_opciones = ["Mensajes Cliente/Servidor", "TCP Cliente/Servidor", "UDP Cl
 semaforos_opciones = ["Sincronización de semáforos", "Barbero dormilón", "Sala de chat", "Condicion de Carrera", "Semaforos Cliente/Servidor", "Sala de Chat Local"]
 patrones_opciones = ["Futuro Promesa", "Productor-Consumidor", "Actores", "Reactor y Proactor"]
 
+
 # Botones de menú principal
 menu_font = font.Font(family="Helvetica", size=12, weight="bold")
 boton_estilo = {"bg": "#3498db", "fg": "white", "font": menu_font, "bd": 0, "padx": 10, "pady": 10}
@@ -138,6 +139,7 @@ tk.Button(menu_bar, text="Sockets", command=lambda: mostrar_submenu("Sockets", s
 tk.Button(menu_bar, text="Semáforos", command=lambda: mostrar_submenu("Semáforos", semaforos_opciones), **boton_estilo).pack(side="left", expand=True, fill="x")
 tk.Button(menu_bar, text="Patrones", command=lambda: mostrar_submenu("Patrones", patrones_opciones), **boton_estilo).pack(side="left", expand=True, fill="x")
 tk.Button(menu_bar, text="Documentación", command=mostrar_documentacion, **boton_estilo).pack(side="left", expand=True, fill="x")
+tk.Button(menu_bar, text="Acerca de", command=lambda: messagebox.showinfo("Acerca de", "Programación Concurrente UPP SFTW_07_03\nINTEGRANTES DEL EQUIPO:\n1.- Fabricio Meneses Avila\n2.- Jorge Ruiz Diaz\n3.- Diego Daniel Magdaleno Medina\n4.- Angel Gabriel Castillo Sanchez\n5.- Josefa Francisco Hernandez"), **boton_estilo).pack(side="left", expand=True, fill="x")
 tk.Button(menu_bar, text="Salir", command=root.quit, **boton_estilo).pack(side="left", expand=True, fill="x")
 
 # Asegurar que el menú siempre esté en la parte superior

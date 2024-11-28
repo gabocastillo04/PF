@@ -127,3 +127,5 @@ tk.Button(menu_bar, text="Salir", command=root.quit, **boton_estilo).pack(side="
 menu_bar.lift()
 
 root.mainloop()
+
+#DEDICATORIA AL KEBIN

@@ -12,14 +12,26 @@ def ejecutar():  # Función principal
     # Crear la ventana principal de Tkinter
     ventana = tk.Tk()
     ventana.title("Programa de Hilos con Tkinter")
+    ventana.geometry("400x200")
 
     # Crear una etiqueta para mostrar el progreso
     label = tk.Label(ventana, text="Esperando para ejecutar...")
-    label.pack(pady=20)
+    label.pack(pady=10)
+
+    # Crear campos de entrada para nombre y apellido
+    nombre_label = tk.Label(ventana, text="Nombre:")
+    nombre_label.pack()
+    nombre_entry = tk.Entry(ventana)
+    nombre_entry.pack()
+
+    apellido_label = tk.Label(ventana, text="Apellido:")
+    apellido_label.pack()
+    apellido_entry = tk.Entry(ventana)
+    apellido_entry.pack()
 
     # Crear un botón que inicia el hilo cuando se hace clic
-    boton = tk.Button(ventana, text="Iniciar Hilo", command=lambda: threading.Thread(target=Hilo_02, args=("Fab ", "Meneses Avila ", label), daemon=True).start())
+    boton = tk.Button(ventana, text="Iniciar Hilo", command=lambda: threading.Thread(target=Hilo_02, args=(nombre_entry.get(), apellido_entry.get(), label), daemon=True).start())
     boton.pack(pady=20)
 
-# Iniciar el loop de la interfaz gráfica
+    # Iniciar el loop de la interfaz gráfica
     ventana.mainloop()

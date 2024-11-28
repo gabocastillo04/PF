@@ -1,32 +1,15 @@
 import tkinter as tk
-from tkinter import PhotoImage
 import random
 import threading
 import time
-from PIL import Image, ImageTk  # Para redimensionar la imagen de fondo
 
 symbols = ["🌼", "🍄", "🌟"]
 
 class MarioRuletaApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Ruleta Mario")
-        self.root.geometry("800x600")  # Tamaño inicial de la ventana
-
-        # Configurar evento para redimensionar el fondo dinámicamente
-        self.root.bind("<Configure>", self.resize_background)
-
-        # Fondo inicial
-        try:
-            self.original_background = Image.open("ruta/a/tu/imagen.jpg")  # Cambia por la ruta de tu imagen
-            self.resized_background = self.original_background.resize((800, 600))  # Ajuste inicial del tamaño
-            self.background = ImageTk.PhotoImage(self.resized_background)
-        except Exception as e:
-            print(f"Error al cargar la imagen de fondo: {e}")
-            self.background = None
-
-        self.label_background = tk.Label(root, image=self.background)
-        self.label_background.place(x=0, y=0, relwidth=1, relheight=1)
+        self.root.title("Mario Bros Ruleta")
+        self.root.geometry("600x350")  # Tamaño inicial de la ventana
 
         # Variables para el estado del juego
         self.result = [''] * 3
@@ -35,19 +18,19 @@ class MarioRuletaApp:
         self.score = 0
 
         # Elementos de la interfaz
-        self.label_title = tk.Label(root, text="Ruleta Mario", font=("Arial", 20, "bold"), bg="#ffffff")
+        self.label_title = tk.Label(root, text="Ruleta", font=("Arial", 20, "bold"))
         self.label_title.pack(pady=10)
 
-        self.label_result = tk.Label(root, text="Giros: --- --- ---", font=("Arial", 16), bg="#ffffff")
+        self.label_result = tk.Label(root, text="Tiradas: --- --- ---", font=("Arial", 16))
         self.label_result.pack(pady=10)
 
-        self.label_score = tk.Label(root, text="Puntaje: 0", font=("Arial", 16), bg="#ffffff")
+        self.label_score = tk.Label(root, text="Puntos: 0", font=("Arial", 16))
         self.label_score.pack(pady=10)
 
-        self.button_spin = tk.Button(root, text="Girar", command=self.start_spin, font=("Arial", 14), bg="#4CAF50", fg="white", width=15)
+        self.button_spin = tk.Button(root, text="Tirar", command=self.start_spin, font=("Arial", 14), bg="#4CAF50", fg="white", width=15)
         self.button_spin.pack(pady=10)
 
-        self.button_play_again = tk.Button(root, text="Volver a jugar", command=self.reset_game, font=("Arial", 14), bg="#2196F3", fg="white", width=15)
+        self.button_play_again = tk.Button(root, text="Volver a iniciar", command=self.reset_game, font=("Arial", 14), bg="#2196F3", fg="white", width=15)
         self.button_play_again.pack(pady=10)
         self.button_play_again.config(state=tk.DISABLED)
 
@@ -57,15 +40,6 @@ class MarioRuletaApp:
 
         # Eventos para detener los giros
         self.root.bind("<Return>", self.stop_spin_event)
-
-    def resize_background(self, event):
-        """Redimensiona el fondo dinámicamente según el tamaño de la ventana."""
-        if self.background:
-            new_width = event.width
-            new_height = event.height
-            resized_background = self.original_background.resize((new_width, new_height))  # Eliminado ANTIALIAS
-            self.background = ImageTk.PhotoImage(resized_background)
-            self.label_background.config(image=self.background)
 
     def pantalla_giro(self, index):
         """Función para simular el giro de un tambor."""

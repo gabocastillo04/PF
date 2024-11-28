@@ -26,6 +26,7 @@ def ejecutar():
     # Crear la ventana principal
     root = tk.Tk()
     root.title("Ejemplo de Hilos con Tkinter")
+    root.geometry("400x150")
 
     # Variables para controlar el estado de los hilos
     global hilo1_terminado, hilo2_terminado, label1, label2, label_status

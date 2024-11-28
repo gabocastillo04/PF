@@ -6,7 +6,7 @@ import fitz
 
 from Hilos import hilos_hilos, hilos_con_argumentos, hilos_con_funcion_tarea, hilos_sincronizados, mario_bros_ruleta
 from Sockets import mensajes_cliente_servidor, tcp_cliente_servidor, udp_cliente_servidor, comunicacion_directa, comunicacion_indirecta, autenticacion_aguila
-from Semaforos import condicion_de_carrera, sincronizacion_de_semaforos, semaforos_cliente_servidor, barbero_dormilon, sala_de_chat_local, sala_de_chat_ip
+from Semaforos import condicion_de_carrera, sala_de_chat_ip_cliente, sala_de_chat_ip_servidor, sincronizacion_de_semaforos, semaforos_cliente_servidor, barbero_dormilon, sala_de_chat_local
 from Patrones import futuro_promesa, productor_consumidor, actores, reactor_y_proactor
 
 PDF_PATH = r"Documentacion/pdfproyectofinal.pdf"
@@ -60,7 +60,8 @@ opciones_funciones = {
     "UDP Cliente/Servidor": udp_cliente_servidor.ejecutar if hasattr(udp_cliente_servidor, 'ejecutar') else lambda: print("Función no encontrada"),
     "Sincronización de semáforos": sincronizacion_de_semaforos.ejecutar if hasattr(sincronizacion_de_semaforos, 'ejecutar') else lambda: print("Función no encontrada"),
     "Barbero dormilón": barbero_dormilon.ejecutar if hasattr(barbero_dormilon, 'ejecutar') else lambda: print("Función no encontrada"),
-    "Sala de chat": sala_de_chat_ip.ejecutar if hasattr(sala_de_chat_ip, 'ejecutar') else lambda: print("Función no encontrada"),
+    "Sala de chat IP Cliente": sala_de_chat_ip_cliente.ejecutar if hasattr(sala_de_chat_ip_cliente, 'ejecutar') else lambda: print("Función no encontrada"),
+    "Sala de chat IP Servidor": sala_de_chat_ip_servidor.ejecutar if hasattr(sala_de_chat_ip_servidor, 'ejecutar') else lambda: print("Función no encontrada"),
     "Futuro Promesa": futuro_promesa.ejecutar if hasattr(futuro_promesa, 'ejecutar') else lambda: print("Función no encontrada"),
     "Productor-Consumidor": productor_consumidor.ejecutar if hasattr(productor_consumidor, 'ejecutar') else lambda: print("Función no encontrada"),
     "Reactor y Proactor": reactor_y_proactor.ejecutar if hasattr(reactor_y_proactor, 'ejecutar') else lambda: print("Función no encontrada"),
@@ -109,7 +110,7 @@ menu_bar.lift()
 
 hilos_opciones = ["Hilos-Hilos", "Hilos con argumentos", "Hilos con función tarea", "Hilos sincronizados", "Mario Bros Ruleta"]
 sockets_opciones = ["Mensajes Cliente/Servidor", "TCP Cliente/Servidor", "UDP Cliente/Servidor", "Comunicacion Directa", "Comunicacion Indirecta", "Autenticacion Aguila"]
-semaforos_opciones = ["Sincronización de semáforos", "Barbero dormilón", "Sala de chat", "Condicion de Carrera", "Semaforos Cliente/Servidor", "Sala de Chat Local"]
+semaforos_opciones = ["Sincronización de semáforos", "Barbero dormilón", "Condicion de Carrera", "Semaforos Cliente/Servidor", "Sala de Chat Local", "Sala de chat IP Cliente", "Sala de chat IP Servidor"]
 patrones_opciones = ["Futuro Promesa", "Productor-Consumidor", "Actores", "Reactor y Proactor"]
 
 menu_font = font.Font(family="Helvetica", size=12, weight="bold")

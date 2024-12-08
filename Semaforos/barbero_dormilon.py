@@ -2,6 +2,7 @@ import threading
 import time
 import random
 import tkinter as tk
+from queue import Queue
 
 NUMERO_SILLAS = 3
 
@@ -14,6 +15,7 @@ class Barberia:
         self.corte_realizado = threading.Semaphore(0)  
         self.text_widget = text_widget  # Recibe el widget de texto para mostrar mensajes
         self.clientes_atendidos = 0  # Número de clientes atendidos
+        self.cola_clientes = Queue()  # Cola para manejar los clientes de manera ordenada
 
     def actualizar_mensaje(self, mensaje):
         # Usamos el after() para actualizar el widget de texto en el hilo principal
@@ -42,6 +44,7 @@ def cliente(barberia, cliente_id):
             barberia.sillas_sem.release()  
             mensaje = f"El cliente {cliente_id} está siendo atendido."
             barberia.actualizar_mensaje(mensaje)
+            barberia.cola_clientes.put(cliente_id)  # Colocamos el cliente en la cola para que el barbero lo atienda
             barberia.barbero_dormido.release()  
             barberia.corte_realizado.acquire()  
             mensaje = f"El cliente {cliente_id} se va con el pelo cortado."
@@ -58,7 +61,7 @@ def barbero(barberia):
         mensaje = "El barbero ha sido despertado."
         barberia.actualizar_mensaje(mensaje)
 
-        cliente_id = random.randint(1, 100)
+        cliente_id = barberia.cola_clientes.get()  # Obtenemos el cliente de la cola
         barberia.cortar_pelo(cliente_id)
         barberia.corte_realizado.release()  # Indica que el corte ha sido realizado
 
